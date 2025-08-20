@@ -1,0 +1,77 @@
+import math
+
+
+#Exercicios Exceções
+#Exercicio 01
+try:
+    nome = input("Digite seu nome: ")
+
+    if nome.strip() == "":
+        raise ValueError("O nome não pode ser vazio.")
+
+    print("Nome válido:", nome)
+
+except ValueError as e:
+    print("Erro:", e)
+
+#Exercicio 02
+
+try:
+    n1 = int(input("Digite o primeiro número inteiro: "))
+    n2 = int(input("Digite o segundo número inteiro: "))
+
+    resultado = n1 / n2
+    print("Resultado da divisão:", resultado)
+
+except ZeroDivisionError:
+    print("Erro: Não é possível dividir por zero.")
+
+except ValueError:
+    print("Erro: Você deve digitar apenas números inteiros.")
+
+#Exercicio 03
+
+lista = [1, -2, 3, "a", 4]  # exemplo de lista
+
+for item in lista:
+    try:
+        print(f"Fatorial de {item} = {math.factorial(item)}")
+
+    except TypeError:
+        print(f"O valor '{item}' não é um número inteiro.")
+    except ValueError:
+        print(f"Não existe fatorial para número negativo: {item}")
+
+#Exercicio 04
+
+try:
+    nome_arquivo = "texto.txt"  # exemplo
+    with open(nome_arquivo, "r") as arq:
+        linhas = arq.readlines()
+
+    qtd_linhas = len(linhas)
+    qtd_palavras = sum(len(linha.split()) for linha in linhas)
+
+    print("Quantidade de linhas:", qtd_linhas)
+    print("Quantidade de palavras:", qtd_palavras)
+
+except FileNotFoundError:
+    print("Erro: Arquivo não encontrado no diretório.")
+
+#Exercicio 05
+
+try:
+    nome = input("Digite seu nome completo: ")
+
+    if nome.strip() == "":
+        raise ValueError("O nome não pode ser vazio.")
+
+    nome_formatado = nome.title()  # coloca primeira letra maiúscula
+
+    with open("nomes.txt", "a") as arq:
+        arq.write(nome_formatado + "\n")
+
+    print("Nome salvo com sucesso!")
+
+except ValueError as e:
+    print("Erro:", e)
